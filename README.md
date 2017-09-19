@@ -18,7 +18,8 @@ NNLM_ada_v1_old.c   -> previous version of my first implementation
 
 NNLM_ada_v1_acc.c   -> accelerated version from NNLM_ada_v1.c 
 
-
+### Dependency
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4) 
 
 
 ### reference
