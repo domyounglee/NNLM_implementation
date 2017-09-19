@@ -1,7 +1,7 @@
 # NNLM_implementation
 
 ## Reproducing NNLM 
-I Reproduce the Neural Network Language Model from the paper " A Neural Probabilistic Language Model "
+The Neural Network Language Model from the paper " A Neural Probabilistic Language Model "
 
 
 
@@ -18,7 +18,7 @@ NNLM_ada_v1_old.c   -> previous version of my first implementation
 
 NNLM_ada_v1_acc.c   -> accelerated version from NNLM_ada_v1.c 
 
-nnlm.c  -> author's code from the paper 'How to Generate a Good Word Embedding?'
+
 
 
 ### reference
