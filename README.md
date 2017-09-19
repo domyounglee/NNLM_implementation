@@ -11,6 +11,7 @@ My result is quite similar to the result of this paper' NNLM model
 
 
 It was written in C 
+
 NNLM_ada_v1.c       -> final version of my implementation
 
 NNLM_ada_v1_old.c   -> previous version of my first implementation 
