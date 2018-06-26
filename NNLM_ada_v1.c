@@ -390,12 +390,14 @@ void *TrainModelThread(void *id) {
 		}
 		word = sen[sentence_position];
 		if (word == -1) continue;
-		for (c = 0; c < layer1_size; c++) neu1[c] = 0;
-		for (c = 0; c < layer1_size; c++) neu1e[c] = 0;
-		for (c = 0; c < layer2_size; c++) neu2[c] = 0;
-		for (c = 0; c < layer2_size; c++) neu2e[c] = 0;
-		
-		
+		for (c = 0; c < layer1_size; c++){
+			neu1[c] = 0;
+			neu1e[c] = 0;
+		} 
+		for (c = 0; c < layer2_size; c++){
+			neu2[c] = 0;
+			neu2e[c] = 0;
+		} 
 		
 		//train the NNLM architecture
 		//make neu1(concate)   : input to hidden1
@@ -463,11 +465,9 @@ void *TrainModelThread(void *id) {
 
 			}
 
-			//update the syn1
+			//update the neu1e
 			for(b=0 ; b<layer1_size ; b++){
-			           for(c=0 ; c<layer2_size ; c++){
-				
-				
+			    for(c=0 ; c<layer2_size ; c++){
 				
 					neu1e[b] += neu2e[c] * syn1neg[c*layer1_size+b];
 				}
@@ -480,11 +480,9 @@ void *TrainModelThread(void *id) {
 			for(c=0 ; c<layer2_size ; c++){
 				for(b=0 ; b<layer1_size ; b++){
 					int p =c*layer1_size+b;
-					gradsq_syn1neg[p]+=neu2e[c]*neu1[b]*                  neu2e[c]*neu1[b];
-					syn1neg[p]+= alpha*  neu2e[c]*neu1[b]    /sqrt(gradsq_syn1neg[p]);
-					
+					gradsq_syn1neg[p]+=neu2e[c]*neu1[b]* neu2e[c]*neu1[b];
+					syn1neg[p]+= alpha* neu2e[c]*neu1[b] /sqrt(gradsq_syn1neg[p]);
 				}
-				
 			}
 			
 			b=0;
@@ -497,7 +495,7 @@ void *TrainModelThread(void *id) {
 				if (last_word == -1) continue;
 				for (c = 0; c < feature_size; c++){
 					int p = c + last_word * feature_size;
-					gradsq_syn0[p]+=neu1e[c+b*feature_size]*            neu1e[c+b*feature_size];
+					gradsq_syn0[p]+=neu1e[c+b*feature_size]* neu1e[c+b*feature_size];
 					syn0[p] += alpha*   neu1e[c+b*feature_size]    /sqrt(gradsq_syn0[p]);
 					
 				} 
